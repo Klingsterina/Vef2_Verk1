@@ -1,0 +1,33 @@
+/* .text {
+    font-size: 10px;
+    color: green;
+  }
+  
+  .text .text__title {
+    font-size: 1.5em;
+  }
+  
+  .important {
+    font-size: 2em;
+    color: red;
+  } */
+
+  .question {
+      font-size: 1.5em;
+      margin: 1rem;
+  }
+
+  .question-list {
+    padding: 1rem;
+  }
+
+  .answer-list {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  * {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }

@@ -1,0 +1,79 @@
+<!Doctype html>
+<html lang="is">
+  <head>
+    <meta charset="UTF-8">
+    <title>v1</title>
+    <link rel="stylesheet" href="CSS.css"/>
+  </head>
+  <body>
+    <h1>Questions</h1>
+    <h2>JavaScript</h2>
+    
+    <ol class="question-list">
+      
+        <li>
+          <p>Hvað er skrifað út eftir að eftirfarandi kóði er keyrður?
+
+const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const іtem = items
+  .map((i) =&gt; i * 2)
+  .filter(
+    (i) =&gt; i &lt; 10
+  )
+  .find((i) =&gt; i &gt; 6)
+
+
+console.log(item);</p>
+          
+    <ol class="answer-list">
+      
+        <li>
+          <p>[8]</p>
+        </li>
+        <li>
+          <p>Uncaught ReferenceError: item is not defined</p>
+        </li>
+        <li>
+          <p>undefined</p>
+        </li>
+    </ol>
+        </li>
+        <li>
+          <p>Þegar við berum saman gildi í JavaScript ættum við alltaf að nota þrjú samasem merki (`===`) því að</p>
+          
+    <ol class="answer-list">
+      
+        <li>
+          <p>Við ættum alltaf að nota tvö samasem merki, ekki þrjú því þá byrjum við á að bera saman týpur gilda og komumst þannig framhjá type coercion.</p>
+        </li>
+        <li>
+          <p>Þessi samanburður kemst framhjá truthy og falsy gildum og skilar eingöngu réttum niðurstöðum fyrir primitive gildi.</p>
+        </li>
+        <li>
+          <p>Þessi samanburður nýtir lógíska virkja sem virka aðeins í tvístæðum.</p>
+        </li>
+    </ol>
+        </li>
+        <li>
+          <p>Þegar við notum `fetch` í JavaScript ætti ferlið við að sækja gögn að vera</p>
+          
+    <ol class="answer-list">
+      
+        <li>
+          <p>Búið til `fetch` request kall sem verður að tilgreina URL, HTTP aðferð og stöðukóða; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.</p>
+        </li>
+        <li>
+          <p>Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til URL; gögn sótt í response.</p>
+        </li>
+        <li>
+          <p>Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; eingöngu JSON gögn sótt í response með villuathugun.</p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+    </ol>
+        </li>
+    </ol>
+  </body>
+</html>

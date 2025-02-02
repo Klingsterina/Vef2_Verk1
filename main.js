@@ -36,30 +36,9 @@ async function readJson(filePath) {
  */
 async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
-
-  /*
-  <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-  */
-
-  //let html = '';
-
-  /*
-  for (let i = 0; i < data.length; i++) {
-    html += `<li>${data[i].title}</li>\n`;
-  }
-  */
-
-  /*
-  for (let item of data) {
-    html += `<li>${item.title}</li>\n`;
-  }
-  */
-
-  const html = data.map((item) => `<li>${item.title}</li>`).join('\n');
-  console.log("HTML",html);
-  // EKKI GOTT HTML!
+  const html = data.map((item) => 
+    `<li><a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
+  ).join('\n');  
   const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
     <head>
@@ -78,6 +57,92 @@ async function writeHtml(data) {
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
 
+function escapeHtml(unsafeText) {
+  if (typeof unsafeText !== "string") {
+    return "";
+  }
+  
+  return unsafeText
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function getAnswerHtml(answersList) {
+  return /*html*/`
+    <ol class="answer-list">
+      ${answersList.map((answer) => {
+        return /*html*/`
+        <li>
+          <p>${escapeHtml(answer.answer)}</p>
+        </li>`
+      }).join('')}
+    </ol>`;
+}
+
+function getQuestionHtml(questionList) {
+  return /*html*/`
+    <ol class="question-list">
+      ${questionList.map((question) => {
+        return /*html*/`
+        <li>
+          <p>${escapeHtml(question.question)}</p>
+          ${getAnswerHtml(question.answers)}
+        </li>`
+      }).join('')}
+    </ol>`;
+}
+
+
+async function writeSubHtml(data) {
+  const htmlFilePath = 'dist/' + data.title + '.html';
+  
+  const questionList = getQuestionHtml(data.questions)
+
+  const htmlContent = /*html*/`<!Doctype html>
+<html lang="is">
+  <head>
+    <meta charset="UTF-8">
+    <title>v1</title>
+    <link rel="stylesheet" href="CSS.css"/>
+  </head>
+  <body>
+    <h1>Questions</h1>
+    <h2>${escapeHtml(data.title)}</h2>
+    ${questionList}
+  </body>
+</html>`;
+
+
+  fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
+}
+
+
+function parseSubJson(data) {
+  const newQuestions = data.questions.filter((question) => {
+    const questionIsUndefined = question.question === undefined;
+    if (questionIsUndefined) {
+      return false
+    }
+    const answersIsArray = !Array.isArray(question.answers);
+    if (answersIsArray) {
+      return false
+    }
+    //Filter invalid answers
+    question.answers = question.answers.filter((answer)=>{
+      return (!answer.answer || !typeof answer.answer === "string" || !answer.correct || !typeof answer.answer === "boolean");
+    });
+
+    return true
+  })
+
+  data.questions = newQuestions;
+
+  return data;
+}
+
 /**
  * Hreinsa gögn úr index.json
  * @param {unknown} data
@@ -88,7 +153,6 @@ async function parseIndexJson(data) {
     console.error('index.json is not an array. Check the file format.');
     return [];
   }
-  console.log("SUUUUUUUUUUUUUUU",data);
   const newData = [];
   for (const item of data) {
     const titleIsUndefined = item.title === undefined;
@@ -106,7 +170,6 @@ async function parseIndexJson(data) {
 
     newData.push(item);
   }
-  console.log("NEWSSSSSSSUUUUUUU",newData);
   return newData;
 }
 
@@ -121,57 +184,13 @@ async function main() {
 
   const indexData = await parseIndexJson(indexJson);
 
-  writeHtml(indexData);
-  /*
-  if (!Array.isArray(indexData)) {
-    console.error('index.json is not an array. Check the file format.');
-    return [];
-  }
+  await writeHtml(indexData);
 
-  // Read other JSON files listed in index.json
-  const allData = await Promise.all(
-    indexData.map(async (item) => {
-      const filePath = `./data/${item.file}`;
-      const fileData = await readJson(filePath);
-      return fileData ? { ...item, content: fileData } : null;
-    }),
-  );
-  */
+  for (let i = 0; i < indexData.length; i++) {
+    let subData = await readJson("data/" + indexData[i].file);
+    subData = parseSubJson(subData);
+    await writeSubHtml(subData);
+  }
 }
 
 main();
-
-/*
-// Eftirfarandi kóði kom frá ChatGTP eftir að hafa gefið
-// MJÖG einfalt prompt ásamt allri verkefnalýsingu
-async function readAllData() {
-  const indexPath = './data/index.json';
-
-  try {
-    // Read index.json
-    const indexData = await readJSON(indexPath);
-
-    if (!Array.isArray(indexData)) {
-      console.error('index.json is not an array. Check the file format.');
-      return [];
-    }
-
-    // Read other JSON files listed in index.json
-    const allData = await Promise.all(
-      indexData.map(async (item) => {
-        const filePath = `./data/${item.file}`;
-        const fileData = await readJSON(filePath);
-        return fileData ? { ...item, content: fileData } : null;
-      }),
-    );
-
-    return allData.filter(Boolean); // Remove null entries if any file failed to load
-  } catch (error) {
-    console.error('Error reading data files:', error.message);
-    return [];
-  }
-}
-
-
-readAllData().then((data) => console.log(data));
-*/
