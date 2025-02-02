@@ -1,0 +1,27 @@
+{
+  "name": "verkefni1",
+  "version": "1.0.0",
+  "description": "Fyrsta verkefni í vefforritun 2",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "dev": "concurrently \"vite\" \"nodemon main.js\"",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Klingsterina/Vef2_Verk1.git"
+  },
+  "author": "Eygló",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Klingsterina/Vef2_Verk1/issues"
+  },
+  "homepage": "https://github.com/Klingsterina/Vef2_Verk1#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "vite": "^6.0.11"
+  }
+}
