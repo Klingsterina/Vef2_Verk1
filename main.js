@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
+
 
 const INDEX_PATH = './data/index.json';
 
@@ -56,7 +58,7 @@ async function writeHtml(data) {
   */
 
   const html = data.map((item) => `<li>${item.title}</li>`).join('\n');
-
+  console.log("HTML",html);
   // EKKI GOTT HTML!
   const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
@@ -77,12 +79,35 @@ async function writeHtml(data) {
 }
 
 /**
- *
+ * Hreinsa gögn úr index.json
  * @param {unknown} data
  * @returns {any}
  */
-function parseIndexJson(data) {
-  return data;
+async function parseIndexJson(data) {
+  if (!Array.isArray(data)) {
+    console.error('index.json is not an array. Check the file format.');
+    return [];
+  }
+  console.log("SUUUUUUUUUUUUUUU",data);
+  const newData = [];
+  for (const item of data) {
+    const titleIsUndefined = item.title === undefined;
+    const fileIsUndefined = item.file === undefined;
+    const fileDoesNotExist = !existsSync("data/" + item.file);
+
+    if (titleIsUndefined || fileIsUndefined || fileDoesNotExist) {
+      continue;
+    }
+
+    const fileData = await readJson("data/" + item.file);
+    if (!fileData || typeof fileData.title !== 'string' || !Array.isArray(fileData.questions)) {
+      continue;
+    }
+
+    newData.push(item);
+  }
+  console.log("NEWSSSSSSSUUUUUUU",newData);
+  return newData;
 }
 
 /**
@@ -94,12 +119,9 @@ function parseIndexJson(data) {
 async function main() {
   const indexJson = await readJson(INDEX_PATH);
 
-  const indexData = parseIndexJson(indexJson);
+  const indexData = await parseIndexJson(indexJson);
 
   writeHtml(indexData);
-
-  console.log(indexData);
-
   /*
   if (!Array.isArray(indexData)) {
     console.error('index.json is not an array. Check the file format.');
