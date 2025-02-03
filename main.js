@@ -37,16 +37,17 @@ async function readJson(filePath) {
 async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
   const html = data.map((item) => 
-    `<li><a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
+    /*html*/`<li><a class="flokkar" href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
   ).join('\n');  
   const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
     <head>
       <meta charset="UTF-8">
       <title>v1</title>
+      <link rel="stylesheet" href="CSS.css"/>
     </head>
     <body>
-      <h1>SmYfirlit</h1>
+      <h1 class="container">Flokkar</h1>
       <ul>
         ${html}
       </ul>
@@ -73,6 +74,7 @@ function escapeHtml(unsafeText) {
 function getAnswerHtml(answersList) {
   return /*html*/`
     <ol class="answer-list">
+      <p class="bold">Svarmöguleikar:</p>
       ${answersList.map((answer) => {
         return /*html*/`
         <li>
@@ -88,7 +90,7 @@ function getQuestionHtml(questionList) {
       ${questionList.map((question) => {
         return /*html*/`
         <li>
-          <p>${escapeHtml(question.question)}</p>
+          <p class="question">${escapeHtml(question.question)}:</p>
           ${getAnswerHtml(question.answers)}
         </li>`
       }).join('')}
@@ -107,9 +109,11 @@ async function writeSubHtml(data) {
     <link rel="stylesheet" href="CSS.css"/>
   </head>
   <body>
-    <h1>Questions</h1>
-    <a href="." class="tilbaka">Til baka</a>
-    <h2>${escapeHtml(data.title)}</h2>
+    <div class="container">
+      <h1>Questions</h1>
+      <a href="." class="tilbaka">Til baka</a>
+      <h2>${escapeHtml(data.title)}</h2>
+    </div>
     ${questionList}
   </body>
 </html>`;
