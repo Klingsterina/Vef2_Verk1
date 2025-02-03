@@ -98,9 +98,7 @@ function getQuestionHtml(questionList) {
 
 async function writeSubHtml(data) {
   const htmlFilePath = 'dist/' + data.title + '.html';
-  
   const questionList = getQuestionHtml(data.questions)
-
   const htmlContent = /*html*/`<!Doctype html>
 <html lang="is">
   <head>
@@ -110,6 +108,7 @@ async function writeSubHtml(data) {
   </head>
   <body>
     <h1>Questions</h1>
+    <a href="." class="tilbaka">Til baka</a>
     <h2>${escapeHtml(data.title)}</h2>
     ${questionList}
   </body>
@@ -118,7 +117,6 @@ async function writeSubHtml(data) {
 
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
-
 
 function parseSubJson(data) {
   const newQuestions = data.questions.filter((question) => {
@@ -132,14 +130,12 @@ function parseSubJson(data) {
     }
     //Filter invalid answers
     question.answers = question.answers.filter((answer)=>{
-      return (!answer.answer || !typeof answer.answer === "string" || !answer.correct || !typeof answer.answer === "boolean");
+      return (!answer.answer || !typeof answer.answer === "string" || !answer.correct || typeof answer.correct === "boolean");
     });
 
     return true
   })
-
   data.questions = newQuestions;
-
   return data;
 }
 
