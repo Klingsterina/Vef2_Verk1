@@ -3,11 +3,12 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
-.answer-list {
+/* .answer-list {
   align-items: flex-start;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,8 +18,11 @@
 
 .answer-list button {
   margin: 0.25rem 0;
-  max-width: 600px;
+  width: 500px;
   padding: 0.5rem;
+  color: black;
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
 .container {
@@ -44,7 +48,6 @@
   font-size: larger;
 }
 
-
 .question {
   font-size: 1.2em;
   margin: 1rem;
@@ -56,19 +59,21 @@
   border: 2px solid black;
   border-radius: 5px;
   box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.301);
-  display: grid;                                    /*í raun bara notað fyrir gap*/
+  display: grid;
   gap: 1rem;
-  /* margin: auto; */
-  margin: 1rem;
-  place-self: center;
-  max-width: 604px;
-  padding: 1rem 2rem 2rem 2rem;
+  margin: auto;
+  max-width: 800px;
+  padding: 1rem;
   place-content: center;
   width: 100%;
+}*/
+
+.question-list {
+  padding: 2rem;
+  text-align: left;
 }
 
-
-.tilbaka, .flokkar {
+.tilbaka {
   border: 2px solid black;
   border-radius: 5px;
   color: black;
@@ -80,14 +85,108 @@
   font-size: large;
 }
 
-.correct {
-  background-color: rgb(0, 255, 55);
-  color: #fff;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.flokkar {
+  margin: 10px 0;
+}
+
+.flokkar a {
+  display: block;
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
   border-radius: 5px;
+  transition: 0.3s;
+}
+
+.flokkar a:hover {
+  background: #0056b3;
+}
+
+/* Svarmöguleikar */
+.answer-list {
+  padding: 10px;
+}
+
+.answer-list button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  /* border: none; */
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.correct {
+  background-color: #28a745;
+  color: white;
 }
 
 .incorrect {
-  background-color: red;
-  color: #fff;
-  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Aðlögun fyrir minni skjái */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .flokkar a {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .answer-list button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* Aðlögun fyrir stærri skjái */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .flokkar a {
+    font-size: 1.1rem;
+  }
 }

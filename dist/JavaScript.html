@@ -10,8 +10,7 @@
       <h1>Questions</h1>
       <a href="." class="tilbaka">Til baka</a>
       <h2>JavaScript</h2>
-    </div>
-    
+      
     <ol class="question-list">
       
         <li>
@@ -24,7 +23,7 @@
           <button 
             data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Uncaught ReferenceError: item is not defined
+            undefined
           </button>
         </li>
         <li>
@@ -38,14 +37,14 @@
           <button 
             data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            undefined
+            [8]
           </button>
         </li>
         <li>
           <button 
             data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            [8]
+            Uncaught ReferenceError: item is not defined
           </button>
         </li>
     </ol>
@@ -65,13 +64,6 @@
         </li>
         <li>
           <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Þessi samanburður kemst framhjá truthy og falsy gildum og skilar eingöngu réttum niðurstöðum fyrir primitive gildi.
-          </button>
-        </li>
-        <li>
-          <button 
             data-correct="true" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
             Þessi samanburður byrjar á að bera saman týpur gilda og kemst því framhjá type coercion sem gerist með samanburð með tveimur samasem merkjum.
@@ -84,6 +76,13 @@
             Við ættum alltaf að nota tvö samasem merki, ekki þrjú því þá byrjum við á að bera saman týpur gilda og komumst þannig framhjá type coercion.
           </button>
         </li>
+        <li>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þessi samanburður kemst framhjá truthy og falsy gildum og skilar eingöngu réttum niðurstöðum fyrir primitive gildi.
+          </button>
+        </li>
     </ol>
         </li>
         <li>
@@ -92,6 +91,20 @@
     <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
       
+        <li>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; eingöngu JSON gögn sótt í response með villuathugun.
+          </button>
+        </li>
+        <li>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til URL; gögn sótt í response.
+          </button>
+        </li>
         <li>
           <button 
             data-correct="true" 
@@ -106,22 +119,9 @@
             Búið til `fetch` request kall sem verður að tilgreina URL, HTTP aðferð og stöðukóða; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.
           </button>
         </li>
-        <li>
-          <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til URL; gögn sótt í response.
-          </button>
-        </li>
-        <li>
-          <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; eingöngu JSON gögn sótt í response með villuathugun.
-          </button>
-        </li>
     </ol>
         </li>
     </ol>
+    </div>
   </body>
 </html>

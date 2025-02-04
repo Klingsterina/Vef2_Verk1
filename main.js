@@ -47,10 +47,12 @@ async function writeHtml(data) {
       <link rel="stylesheet" href="CSS.css"/>
     </head>
     <body>
-      <h1 class="container">Flokkar</h1>
-      <ul class="container">
-        ${html}
-      </ul>
+      <div class="container">
+        <h1>Flokkar</h1>
+        <ul>
+          ${html}
+        </ul>
+      </div>
     </body>
   </html>
 `;
@@ -135,8 +137,8 @@ async function writeSubHtml(data) {
       <h1>Questions</h1>
       <a href="." class="tilbaka">Til baka</a>
       <h2>${escapeHtml(data.title)}</h2>
+      ${questionList}
     </div>
-    ${questionList}
   </body>
 </html>`;
 
