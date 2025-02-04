@@ -37,7 +37,7 @@ async function readJson(filePath) {
 async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
   const html = data.map((item) => 
-    /*html*/`<li><a class="flokkar" href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
+    /*html*/`<li class="flokkar"><a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
   ).join('\n');  
   const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
@@ -48,7 +48,7 @@ async function writeHtml(data) {
     </head>
     <body>
       <h1 class="container">Flokkar</h1>
-      <ul>
+      <ul class="container">
         ${html}
       </ul>
     </body>
@@ -58,6 +58,12 @@ async function writeHtml(data) {
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
 
+/**
+ * Fall sem passar upp á XSS( Cross Site Scripting) árásir og breytir mögulega 
+ * 'vondum' texta í öruggan texta
+ * @param {*} unsafeText Tekur inn texta sem á að escape-a
+ * @returns öruggum javascript texta
+ */
 function escapeHtml(unsafeText) {
   if (typeof unsafeText !== "string") {
     return "";
@@ -71,33 +77,49 @@ function escapeHtml(unsafeText) {
     .replace(/'/g, "&#039;");
 }
 
+/**
+ * Býr til HTML fyrir svarmöguleika
+ * @param {*} answersList tekur inn lista af svarmöguleikum
+ * @returns svarmöguleikum í HTML
+ */
 function getAnswerHtml(answersList) {
   return /*html*/`
     <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
-      ${answersList.map((answer) => {
-        return /*html*/`
+      ${shuffle(answersList).map(answer => /*html*/`
         <li>
-          <p>${escapeHtml(answer.answer)}</p>
-        </li>`
-      }).join('')}
+          <button 
+            data-correct="${answer.correct}" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            ${escapeHtml(answer.answer)}
+          </button>
+        </li>`).join('')}
     </ol>`;
 }
 
+
+/**
+ * Býr til HTML fyrir spurningar
+ * @param {*} questionList tekur inn lista af spurningum
+ * @returns spurningum ásamt svarmöguleikum í HTML
+ */
 function getQuestionHtml(questionList) {
   return /*html*/`
     <ol class="question-list">
-      ${questionList.map((question) => {
-        return /*html*/`
+      ${questionList.map((question) => /*html*/`
         <li>
-          <p class="question">${escapeHtml(question.question)}:</p>
+          <p class="question">${escapeHtml(question.question).replace(/\n/g, '<br>')}:</p>
           ${getAnswerHtml(question.answers)}
         </li>`
-      }).join('')}
+      ).join('')}
     </ol>`;
 }
 
 
+/**
+ * Býr til .html fyrir json skrárnar CSS, HTML og JS og birtrar spurningar og svarmöguleika
+ * @param {*} data tekur inn gögn frá json skrá
+ */
 async function writeSubHtml(data) {
   const htmlFilePath = 'dist/' + data.title + '.html';
   const questionList = getQuestionHtml(data.questions)
@@ -122,6 +144,13 @@ async function writeSubHtml(data) {
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
 
+
+/**
+ * Fall sem athugar hvort spurningar og svarmöguleikar séu gildir
+ * og filterar út ógilda spurningar og svarmöguleika
+ * @param {*} data Gögn til að filtera
+ * @returns Skilar gögnum sem hafa verið filteruð
+ */
 function parseSubJson(data) {
   const newQuestions = data.questions.filter((question) => {
     const questionIsUndefined = question.question === undefined;
@@ -133,8 +162,11 @@ function parseSubJson(data) {
       return false
     }
     //Filter invalid answers
-    question.answers = question.answers.filter((answer)=>{
-      return (!answer.answer || !typeof answer.answer === "string" || !answer.correct || typeof answer.correct === "boolean");
+    question.answers = question.answers.filter((answer) => {
+      return (
+        typeof answer.answer === "string" &&  
+        typeof answer.correct === "boolean" 
+      );
     });
 
     return true
@@ -145,8 +177,8 @@ function parseSubJson(data) {
 
 /**
  * Hreinsa gögn úr index.json
- * @param {unknown} data
- * @returns {any}
+ * @param {unknown} data Gögn til að hreinsa
+ * @returns {any} Gögn sem hafa verið hreinsuð
  */
 async function parseIndexJson(data) {
   if (!Array.isArray(data)) {
@@ -191,6 +223,29 @@ async function main() {
     subData = parseSubJson(subData);
     await writeSubHtml(subData);
   }
+}
+
+/**
+ * Shuffle function sem randomize-ar array
+ * @param {*} array fylki sem á að randomize-a
+ * @returns randomize-aða fylkinu
+ */
+function shuffle(array) {
+  if (array.constructor !== Array) {
+      console.error("Trying to randomize a non-array object");
+      return null;
+  }
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
 }
 
 main();

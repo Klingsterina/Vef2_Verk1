@@ -15,34 +15,38 @@
     <ol class="question-list">
       
         <li>
-          <p class="question">Hvað er skrifað út eftir að eftirfarandi kóði er keyrður?
-
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-const іtem = items
-  .map((i) =&gt; i * 2)
-  .filter(
-    (i) =&gt; i &lt; 10
-  )
-  .find((i) =&gt; i &gt; 6)
-
-
-console.log(item);:</p>
+          <p class="question">Hvað er skrifað út eftir að eftirfarandi kóði er keyrður?<br><br>const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];<br><br>const іtem = items<br>  .map((i) =&gt; i * 2)<br>  .filter(<br>    (i) =&gt; i &lt; 10<br>  )<br>  .find((i) =&gt; i &gt; 6)<br><br><br>console.log(item);:</p>
           
     <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>8</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Uncaught ReferenceError: item is not defined
+          </button>
         </li>
         <li>
-          <p>[8]</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            8
+          </button>
         </li>
         <li>
-          <p>Uncaught ReferenceError: item is not defined</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            undefined
+          </button>
         </li>
         <li>
-          <p>undefined</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            [8]
+          </button>
         </li>
     </ol>
         </li>
@@ -53,16 +57,32 @@ console.log(item);:</p>
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>Þessi samanburður byrjar á að bera saman týpur gilda og kemst því framhjá type coercion sem gerist með samanburð með tveimur samasem merkjum.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þessi samanburður nýtir lógíska virkja sem virka aðeins í tvístæðum.
+          </button>
         </li>
         <li>
-          <p>Við ættum alltaf að nota tvö samasem merki, ekki þrjú því þá byrjum við á að bera saman týpur gilda og komumst þannig framhjá type coercion.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þessi samanburður kemst framhjá truthy og falsy gildum og skilar eingöngu réttum niðurstöðum fyrir primitive gildi.
+          </button>
         </li>
         <li>
-          <p>Þessi samanburður kemst framhjá truthy og falsy gildum og skilar eingöngu réttum niðurstöðum fyrir primitive gildi.</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þessi samanburður byrjar á að bera saman týpur gilda og kemst því framhjá type coercion sem gerist með samanburð með tveimur samasem merkjum.
+          </button>
         </li>
         <li>
-          <p>Þessi samanburður nýtir lógíska virkja sem virka aðeins í tvístæðum.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Við ættum alltaf að nota tvö samasem merki, ekki þrjú því þá byrjum við á að bera saman týpur gilda og komumst þannig framhjá type coercion.
+          </button>
         </li>
     </ol>
         </li>
@@ -73,19 +93,32 @@ console.log(item);:</p>
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.
+          </button>
         </li>
         <li>
-          <p>Búið til `fetch` request kall sem verður að tilgreina URL, HTTP aðferð og stöðukóða; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem verður að tilgreina URL, HTTP aðferð og stöðukóða; villuathugun á kalli og svari með tilliti til HTTP; gögn sótt í response með villuathugun.
+          </button>
         </li>
         <li>
-          <p>Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til URL; gögn sótt í response.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til URL; gögn sótt í response.
+          </button>
         </li>
         <li>
-          <p>Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; eingöngu JSON gögn sótt í response með villuathugun.</p>
-        </li>
-        <li>
-          <p></p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Búið til `fetch` request kall sem tilgreinir að minnsta kosti URL; villuathugun á kalli og svari með tilliti til HTTP; eingöngu JSON gögn sótt í response með villuathugun.
+          </button>
         </li>
     </ol>
         </li>

@@ -15,49 +15,38 @@
     <ol class="question-list">
       
         <li>
-          <p class="question">Fyrir eftirfarandi HTML / for the following HTML:
-
-
-&lt;div class=&quot;text&quot;&gt;
-  &lt;h1 class=&quot;important text__title&quot;&gt;Halló heimur&lt;/p&gt;
-&lt;/div&gt;
- 
-
-Er skilgreint CSS / there is defined CSS:
-
-
-.text {
-  font-size: 10px;
-  color: green;
-}
-
-.text .text__title {
-  font-size: 1.5em;
-}
-
-.important {
-  font-size: 2em;
-  color: red;
-}
-
- 
-
-Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið er að reikna gildi?:</p>
+          <p class="question">Fyrir eftirfarandi HTML / for the following HTML:<br><br><br>&lt;div class=&quot;text&quot;&gt;<br>  &lt;h1 class=&quot;important text__title&quot;&gt;Halló heimur&lt;/p&gt;<br>&lt;/div&gt;<br> <br><br>Er skilgreint CSS / there is defined CSS:<br><br><br>.text {<br>  font-size: 10px;<br>  color: green;<br>}<br><br>.text .text__title {<br>  font-size: 1.5em;<br>}<br><br>.important {<br>  font-size: 2em;<br>  color: red;<br>}<br><br> <br><br>Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið er að reikna gildi?:</p>
           
     <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>font-size: 20px;, color: green;</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            font-size: 15px;, color: red;
+          </button>
         </li>
         <li>
-          <p>font-size: 15px;, color: red;</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            font-size: 15px;, color: green;
+          </button>
         </li>
         <li>
-          <p>font-size: 20px;, color: red;</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            font-size: 20px;, color: red;
+          </button>
         </li>
         <li>
-          <p>font-size: 15px;, color: green;</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            font-size: 20px;, color: green;
+          </button>
         </li>
     </ol>
         </li>
@@ -68,16 +57,32 @@ Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>Skilgreina fallback gildi á undan nýja gildinu sem væri notað í stað þess ef það er ekki stutt</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Setja upp JavaScript virkni sem bendir notanda á að sækja nýjann vafra sem styður gildið.
+          </button>
         </li>
         <li>
-          <p>Skilgreina fallback gildi á eftir nýja gildinu sem væri notað í stað þess ef það er ekki stutt.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Skilgreina fallback gildi á eftir nýja gildinu sem væri notað í stað þess ef það er ekki stutt.
+          </button>
         </li>
         <li>
-          <p>Setja upp JavaScript virkni sem bendir notanda á að sækja nýjann vafra sem styður gildið.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þetta er ekki stutt í CSS.
+          </button>
         </li>
         <li>
-          <p>Þetta er ekki stutt í CSS.</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Skilgreina fallback gildi á undan nýja gildinu sem væri notað í stað þess ef það er ekki stutt
+          </button>
         </li>
     </ol>
         </li>
@@ -88,16 +93,32 @@ Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>„Flex container“ og „flex items; „grid container“ og „grid items“: greinarmunur á foreldri og börnum þegar flexbox og CSS grid er notað.</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            „Flex container“ og „flex items; „grid container“ og „grid items“: greinarmunur á foreldri og börnum þegar flexbox og CSS grid er notað.
+          </button>
         </li>
         <li>
-          <p>„Flex container“ og „flex items: greinarmunur á foreldri og börnum eingngu þegar flexbox er notað.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            „Grid container“ og „grid items“: greinarmunur á foreldri og börnum eingöngu þegar grid er notað.
+          </button>
         </li>
         <li>
-          <p>„Grid container“ og „grid items“: greinarmunur á foreldri og börnum eingöngu þegar grid er notað.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            „Flex container“ og „flex items: greinarmunur á foreldri og börnum eingngu þegar flexbox er notað.
+          </button>
         </li>
         <li>
-          <p>Hugtök sem eru notuð með `querySelectorAll`: „container“ er það element sem leitað er undir, „items“ það sem er skilað.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Hugtök sem eru notuð með `querySelectorAll`: „container“ er það element sem leitað er undir, „items“ það sem er skilað.
+          </button>
         </li>
     </ol>
         </li>
@@ -108,16 +129,32 @@ Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið
       <p class="bold">Svarmöguleikar:</p>
       
         <li>
-          <p>Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á aðalás frá vinstri til hægri.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á krossás frá vinstri til hægri.
+          </button>
         </li>
         <li>
-          <p>Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á aðalás frá vinstri til hægri.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á krossás frá vinstri til hægri.
+          </button>
         </li>
         <li>
-          <p>Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á krossás frá vinstri til hægri.</p>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á aðalás frá vinstri til hægri.
+          </button>
         </li>
         <li>
-          <p>Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á krossás frá vinstri til hægri.</p>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á aðalás frá vinstri til hægri.
+          </button>
         </li>
     </ol>
         </li>
