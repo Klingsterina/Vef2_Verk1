@@ -63,8 +63,8 @@
   place-self: center;
   max-width: 604px;
   padding: 1rem 2rem 2rem 2rem;
-  /* place-content: center;
-  width: 100%; */
+  place-content: center;
+  width: 100%;
 }
 
 
