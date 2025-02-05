@@ -8,7 +8,6 @@
   <body>
     <div class="container">
       <h1>Questions</h1>
-      <a href="." class="tilbaka">Til baka</a>
       <h2>CSS</h2>
       
     <ol class="question-list">
@@ -16,16 +15,9 @@
         <li>
           <p class="question">Fyrir eftirfarandi HTML / for the following HTML:<br><br><br>&lt;div class=&quot;text&quot;&gt;<br>  &lt;h1 class=&quot;important text__title&quot;&gt;Halló heimur&lt;/p&gt;<br>&lt;/div&gt;<br> <br><br>Er skilgreint CSS / there is defined CSS:<br><br><br>.text {<br>  font-size: 10px;<br>  color: green;<br>}<br><br>.text .text__title {<br>  font-size: 1.5em;<br>}<br><br>.important {<br>  font-size: 2em;<br>  color: red;<br>}<br><br> <br><br>Hvert af eftirfarandi er satt fyrir textann „Halló heimur“ eftir að búið er að reikna gildi?:</p>
           
-    <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
+    <ol class="answer-list">
       
-        <li>
-          <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            font-size: 15px;, color: red;
-          </button>
-        </li>
         <li>
           <button 
             data-correct="false" 
@@ -35,16 +27,23 @@
         </li>
         <li>
           <button 
-            data-correct="true" 
+            data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            font-size: 20px;, color: green;
+            font-size: 15px;, color: green;
           </button>
         </li>
         <li>
           <button 
             data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            font-size: 15px;, color: green;
+            font-size: 15px;, color: red;
+          </button>
+        </li>
+        <li>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            font-size: 20px;, color: green;
           </button>
         </li>
     </ol>
@@ -52,16 +51,9 @@
         <li>
           <p class="question">Ef við erum að nota nýtt gildi fyrir lit í CSS sem er ekki víst að sé stutt í öllum vöfrum, þá ættum við að:</p>
           
-    <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
+    <ol class="answer-list">
       
-        <li>
-          <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Þetta er ekki stutt í CSS.
-          </button>
-        </li>
         <li>
           <button 
             data-correct="false" 
@@ -78,6 +70,13 @@
         </li>
         <li>
           <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Þetta er ekki stutt í CSS.
+          </button>
+        </li>
+        <li>
+          <button 
             data-correct="true" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
             Skilgreina fallback gildi á undan nýja gildinu sem væri notað í stað þess ef það er ekki stutt
@@ -88,14 +87,14 @@
         <li>
           <p class="question">Í verkefnum höfum við unnið með „containers“ og „items“ sem hugtök, hvað á það við?:</p>
           
-    <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
+    <ol class="answer-list">
       
         <li>
           <button 
-            data-correct="false" 
+            data-correct="true" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            „Grid container“ og „grid items“: greinarmunur á foreldri og börnum eingöngu þegar grid er notað.
+            „Flex container“ og „flex items; „grid container“ og „grid items“: greinarmunur á foreldri og börnum þegar flexbox og CSS grid er notað.
           </button>
         </li>
         <li>
@@ -107,9 +106,9 @@
         </li>
         <li>
           <button 
-            data-correct="true" 
+            data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            „Flex container“ og „flex items; „grid container“ og „grid items“: greinarmunur á foreldri og börnum þegar flexbox og CSS grid er notað.
+            „Grid container“ og „grid items“: greinarmunur á foreldri og börnum eingöngu þegar grid er notað.
           </button>
         </li>
         <li>
@@ -124,9 +123,23 @@
         <li>
           <p class="question">Þegar við notum flexbox hvað af eftirfarandi er satt? Gerið ráð fyrir að skjal sé lesið frá vinstri til hægri.:</p>
           
-    <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
+    <ol class="answer-list">
       
+        <li>
+          <button 
+            data-correct="false" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á aðalás frá vinstri til hægri.
+          </button>
+        </li>
+        <li>
+          <button 
+            data-correct="true" 
+            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+            Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á aðalás frá vinstri til hægri.
+          </button>
+        </li>
         <li>
           <button 
             data-correct="false" 
@@ -138,26 +151,13 @@
           <button 
             data-correct="false" 
             onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Höfum skilgreinda tvo ása: aðalás og krossás sem eru samsíða; sjálfgefin röðun er á aðalás frá vinstri til hægri.
-          </button>
-        </li>
-        <li>
-          <button 
-            data-correct="false" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
             Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á krossás frá vinstri til hægri.
           </button>
         </li>
-        <li>
-          <button 
-            data-correct="true" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            Höfum skilgreinda tvo ása: aðalás og krossás sem eru hornréttir; sjálfgefin röðun er á aðalás frá vinstri til hægri.
-          </button>
-        </li>
     </ol>
         </li>
     </ol>
+      <a href="." class="tilbaka">Til baka</a>
     </div>
   </body>
 </html>

@@ -3,86 +3,30 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
-/* .answer-list {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: lower-alpha;
-  margin: 1rem;
+.answer-list {
+  padding: 10px;
+  list-style: upper-alpha;
+  margin-bottom: 3rem;
 }
 
 .answer-list button {
-  margin: 0.25rem 0;
-  width: 500px;
-  padding: 0.5rem;
-  color: black;
-  border-radius: 5px;
-  border: 2px solid black;
-}
-
-.container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem;
-  list-style: none;
-}
-
-.flokkar {
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.301);
-  width: 200px;
-  text-align: center;
-}
-
-.flokkar a {
-  color: black;
-  font-weight: 500;
-  font-size: larger;
-}
-
-.question {
-  font-size: 1.2em;
-  margin: 1rem;
-  max-width: 600px;
-}
-
-.question-list {
-  background-color: #f0f0f0;
-  border: 2px solid black;
-  border-radius: 5px;
-  box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.301);
-  display: grid;
-  gap: 1rem;
-  margin: auto;
-  max-width: 800px;
-  padding: 1rem;
-  place-content: center;
+  display: block;
   width: 100%;
-}*/
-
-.question-list {
-  padding: 2rem;
-  text-align: left;
-}
-
-.tilbaka {
-  border: 2px solid black;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 1rem;
   border-radius: 5px;
+  border: 2px solid black;
   color: black;
-  padding: 0.5rem;
 }
 
 .bold {
   font-weight: bold;
-  font-size: large;
+  font-size: 1.2rem;
+  margin: 0 10px;
 }
 
 body {
@@ -103,15 +47,15 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.container h2 {
   font-size: 2rem;
-  margin-bottom: 10px;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.correct {
+  background-color: #28a745;
+  color: white;
 }
+
 
 .flokkar {
   margin: 10px 0;
@@ -131,32 +75,49 @@ ul {
   background: #0056b3;
 }
 
-/* Svarmöguleikar */
-.answer-list {
-  padding: 10px;
-}
-
-.answer-list button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  /* border: none; */
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 2px solid black;
-}
-
-.correct {
-  background-color: #28a745;
-  color: white;
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 .incorrect {
   background-color: #dc3545;
   color: white;
 }
+
+.question {
+  font-size: 1.2em;
+  /* margin-top: 2rem; */
+}
+
+.question-list {
+  padding: 2rem;
+  text-align: left;
+}
+
+.question-list li::marker {
+  font-size: 1.5rem; /* Stækkar númerin */
+  font-weight: bold; /* Gerir þau feitletruð */
+  color: black; /* Stillir litinn */
+}
+
+.answer-list li::marker {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.tilbaka {
+  border: 2px solid black;
+  border-radius: 5px;
+  color: black;
+  padding: 0.5rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 
 /* Aðlögun fyrir minni skjái */
 @media (max-width: 600px) {

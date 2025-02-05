@@ -37,7 +37,10 @@ async function readJson(filePath) {
 async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
   const html = data.map((item) => 
-    /*html*/`<li class="flokkar"><a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a></li>`
+    /*html*/`
+    <li class="flokkar">
+      <a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a>
+    </li>`
   ).join('\n');  
   const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
@@ -86,8 +89,8 @@ function escapeHtml(unsafeText) {
  */
 function getAnswerHtml(answersList) {
   return /*html*/`
-    <ol class="answer-list">
       <p class="bold">Svarmöguleikar:</p>
+    <ol class="answer-list">
       ${shuffle(answersList).map(answer => /*html*/`
         <li>
           <button 
@@ -135,9 +138,9 @@ async function writeSubHtml(data) {
   <body>
     <div class="container">
       <h1>Questions</h1>
-      <a href="." class="tilbaka">Til baka</a>
       <h2>${escapeHtml(data.title)}</h2>
       ${questionList}
+      <a href="." class="tilbaka">Til baka</a>
     </div>
   </body>
 </html>`;
@@ -228,6 +231,8 @@ async function main() {
 }
 
 /**
+ * Fann þetta á stack overflow
+ * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  * Shuffle function sem randomize-ar array
  * @param {*} array fylki sem á að randomize-a
  * @returns randomize-aða fylkinu
