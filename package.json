@@ -8,6 +8,7 @@
     "build": "run-s build:*",
     "build:clean": "rimraf dist",
     "build:generate": "node main.js",
+    "build:copy-public": "cpy public dist --flat",
     "dev": "browser-sync start --serveStatic ./dist --server --files ./dist/**/*.*",
     "lint": "eslint src"
   },

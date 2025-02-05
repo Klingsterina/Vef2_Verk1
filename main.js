@@ -58,7 +58,7 @@ async function writeHtml(data) {
     <head>
       <meta charset="UTF-8">
       <title>v1</title>
-      <link rel="stylesheet" href="./CSS.css"/>
+      <link rel="stylesheet" href="CSS.css"/>
     </head>
     <body>
       <div class="container">
@@ -150,7 +150,7 @@ async function writeSubHtml(data) {
   <head>
     <meta charset="UTF-8">
     <title>v1</title>
-    <link rel="stylesheet" href="./CSS.css"/>
+    <link rel="stylesheet" href="CSS.css"/>
   </head>
   <body>
     <div class="container">

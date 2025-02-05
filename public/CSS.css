@@ -1,0 +1,286 @@
+KlingKling
+klingkling
+Online
+
+KlingKling — Today at 00:25
+/**
+ 
+Fann þetta á stack overflow
+https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+Shuffle function sem randomize-ar array
+@param {*} array fylki sem á að randomize-a
+@returns randomize-aða fylkinu*/
+function shuffle(array) {
+  if (array.constructor !== Array) {
+      console.error("Trying to randomize a non-array object");
+      return null;
+  }
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+Stack Overflow
+How to randomize (shuffle) a JavaScript array?
+I have an array like this:
+
+var arr1 = ["a", "b", "c", "d"];
+How can I randomize / shuffle it?
+Image
+er eih annað sem þu villt fá?
+KlingKling — Today at 00:40
+einnig er gott að byrja skoða þetta
+https://github.com/vefforritun/vef2-2025-einstaklings
+GitHub
+GitHub - vefforritun/vef2-2025-einstaklings
+Contribute to vefforritun/vef2-2025-einstaklings development by creating an account on GitHub.
+GitHub - vefforritun/vef2-2025-einstaklings
+það se skil a þessu i næstu viku
+og gildir 10% af loka einkunninni
+ss allt i heildina
+Helga — Today at 12:11
+mömmu þína helst
+Helga — Today at 12:38
+omg.....
+allt að gerast núna
+plssss
+smá grið
+Helga — Today at 13:52
+Okei en erum við að mæta upp í skóla í dag? apparently er spáin skelfileg í kvöld, þeir segja versta veður ársins
+KlingKling — Today at 13:53
+Eg ætla að mæta
+Eg þarf að koma elias i skolan svo hann geri verkefnin sin
+Helga — Today at 13:56
+núnú
+KlingKling — Today at 13:57
+Villtu ekki mæta i nörd
+Helga — Today at 14:02
+not rlly
+er kósí hér
+og það eru menn í húsinu mínu i ain't leaving my room
+KARLMENN
+KlingKling — Today at 14:03
+Giiirl
+Helga — Today at 14:03
+AAH!
+mæti með læti á mrg
+Helga — Today at 14:26
+are you sure about that
+ofsaveður
+KlingKling — Today at 14:26
+Noooo i will not
+Helga — Today at 14:27
+tehe
+Helga — Today at 15:01
+https://youtube.com/shorts/SacbRcJ-MGU?si=tq074E7V1XITDH7m
+YouTube
+Joe McCann
+That time 4chan published math research #math
+Image
+þetta er cool
+apparently er þetta Haruhi anime þannig að það skiptir ekki máli í hvaða röð þú horfir á 14 þættina í season 1, og þess vegna var 4chan að reyna að reikna þetta
+KlingKling — Today at 15:19
+git rm dist
+Image
+Image
+Image
+KlingKling — Today at 15:27
+Image
+Helga — Today at 15:27
+Þetta er svo dank wth
+KlingKling — Today at 15:27
+im taking notes
+Helga — Today at 15:28
+Ohhhh er þetta fyrirlesturinn?
+KlingKling — Today at 15:28
+yep
+Helga — Today at 15:28
+Ongggg verkefni 1?
+KlingKling — Today at 15:28
+jamm
+Image
+Image
+Image
+skoða hvernig er i synilausn 2024
+þu ert notes hja mer
+nota lint i package.json
+Image
+Image
+Helga — Today at 15:38
+looooove that
+Helga — Today at 15:48
+hahhahahh ari er svo mikill kóngur fyrir að vera cam on
+KlingKling — Today at 16:27
+geyma for safe keeping
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+Expand
+message.txt
+3 KB
+﻿
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+  
+  .answer-list {
+    padding: 10px;
+    list-style: upper-alpha;
+    margin-bottom: 3rem;
+  }
+  
+  .answer-list button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 2px solid black;
+    color: black;
+  }
+  
+  .bold {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 10px;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container h2 {
+    font-size: 2rem;
+  }
+  
+  .correct {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  
+  .flokkar {
+    margin: 10px 0;
+  }
+  
+  .flokkar a {
+    display: block;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .flokkar a:hover {
+    background: #0056b3;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .incorrect {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .question {
+    font-size: 1.2em;
+    /* margin-top: 2rem; */
+  }
+  
+  .question-list {
+    padding: 2rem;
+    text-align: left;
+  }
+  
+  .question-list li::marker {
+    font-size: 1.5rem; /* Stækkar númerin */
+    font-weight: bold; /* Gerir þau feitletruð */
+    color: black; /* Stillir litinn */
+  }
+  
+  .answer-list li::marker {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  
+  .tilbaka {
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 0.5rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+  /* Aðlögun fyrir minni skjái */
+  @media (max-width: 600px) {
+    .container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .flokkar a {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  
+    .answer-list button {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  }
+  
+  /* Aðlögun fyrir stærri skjái */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 900px;
+    }
+  
+    .flokkar a {
+      font-size: 1.1rem;
+    }
+  }
+message.txt
+3 KB
