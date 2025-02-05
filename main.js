@@ -1,6 +1,19 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
+
+import { mkdir } from 'fs/promises';
+
+async function ensureDistExists() {
+  try {
+    await mkdir('dist', { recursive: true }); // Creates 'dist' if it doesn't exist
+  } catch (err) {
+    console.error("Error creating 'dist' directory:", err);
+  }
+}
+
+await ensureDistExists();
+
 const INDEX_PATH = './data/index.json';
 
 /**
@@ -45,7 +58,7 @@ async function writeHtml(data) {
     <head>
       <meta charset="UTF-8">
       <title>v1</title>
-      <link rel="stylesheet" href="CSS.css"/>
+      <link rel="stylesheet" href="./CSS.css"/>
     </head>
     <body>
       <div class="container">
@@ -137,7 +150,7 @@ async function writeSubHtml(data) {
   <head>
     <meta charset="UTF-8">
     <title>v1</title>
-    <link rel="stylesheet" href="CSS.css"/>
+    <link rel="stylesheet" href="./CSS.css"/>
   </head>
   <body>
     <div class="container">
