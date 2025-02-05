@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
-
-
 const INDEX_PATH = './data/index.json';
 
 /**
@@ -82,6 +80,15 @@ function escapeHtml(unsafeText) {
     .replace(/'/g, "&#039;");
 }
 
+function stringToHtml(str) {
+  return escapeHtml(str) // Tryggir örugg HTML tákn
+    .split('\n\n') // Skipta í málsgreinar
+    .map((line) => `<p>${line}</p>`) // Setja málsgreinar í `<p>` tag
+    .join('')
+    .replace(/\n/g, '<br>') // Skipta einföldum línuskiptum í `<br>`
+    .replace(/ {2}/g, '&nbsp;&nbsp;'); // Viðhalda bilum
+}
+
 /**
  * Býr til HTML fyrir svarmöguleika
  * @param {*} answersList tekur inn lista af svarmöguleikum
@@ -90,15 +97,14 @@ function escapeHtml(unsafeText) {
 function getAnswerHtml(answersList) {
   return /*html*/`
       <p class="bold">Svarmöguleikar:</p>
-    <ol class="answer-list">
-      ${shuffle(answersList).map(answer => /*html*/`
-        <li>
-          <button 
-            data-correct="${answer.correct}" 
-            onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
-            ${escapeHtml(answer.answer)}
-          </button>
-        </li>`).join('')}
+    <ol class="answer-list">${shuffle(answersList).map(answer => /*html*/`
+      <li>
+        <button 
+          data-correct="${answer.correct}" 
+          onclick="this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect')">
+          ${stringToHtml(answer.answer)}
+        </button>
+      </li>`).join('')}
     </ol>`;
 }
 
@@ -110,13 +116,11 @@ function getAnswerHtml(answersList) {
  */
 function getQuestionHtml(questionList) {
   return /*html*/`
-    <ol class="question-list">
-      ${questionList.map((question) => /*html*/`
-        <li>
-          <p class="question">${escapeHtml(question.question).replace(/\n/g, '<br>')}:</p>
-          ${getAnswerHtml(question.answers)}
-        </li>`
-      ).join('')}
+    <ol class="question-list">${questionList.map((question) => /*html*/`
+      <li>
+        <p class="question">${stringToHtml(question.question).replace(/\n/g, '<br>')}:
+        </p>${getAnswerHtml(question.answers)}
+      </li>`).join('')}
     </ol>`;
 }
 
