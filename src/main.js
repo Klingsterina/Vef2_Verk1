@@ -68,27 +68,22 @@ export function shuffle(array) {
  * @param {*} unsafeText Tekur inn texta sem á að escape-a
  * @returns öruggum javascript texta
  */
-export function escapeHtml(unsafeText) {
-  if (typeof unsafeText !== "string") {
-    return "";
-  }
-  
-  return unsafeText
+export function escapeHtml(str) {
+  return str
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/>/g, "&gt;");
 }
 
 export function stringToHtml(str) {
-  return escapeHtml(str) // Tryggir örugg HTML tákn
-    .split('\n\n') // Skipta í málsgreinar
-    .map((line) => `<p>${line}</p>`) // Setja málsgreinar í `<p>` tag
-    .join('')
-    .replace(/\n/g, '<br>') // Skipta einföldum línuskiptum í `<br>`
-    .replace(/ {2}/g, '&nbsp;&nbsp;'); // Viðhalda bilum
+  return escapeHtml(str)
+    .split("\n\n")                    // Skipta texta upp á tveggja línu bili
+    .map((line) => `<p>${line}</p>`)  // Setja hverja málsgrein í <p> tag
+    .join("")                         // Sameina aftur
+    .replace(/\n/g, "<br>")           // Stök línuskipti fá <br>
+    .replace(/ {2}/g, "&nbsp;&nbsp;");// Gera tvöfalt bil sýnilegt sem &nbsp;&nbsp;
 }
+
 
 /**
  * Skrifa HTML fyrir yfirlit í index.html
