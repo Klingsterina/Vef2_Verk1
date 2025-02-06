@@ -14,6 +14,12 @@ module.exports = {
       'import/no-extraneous-dependencies': 0,
       'no-param-reassign': 0,
       "no-continue": "off",
+      "prefer-template": "off",
+      "spaced-comment": "off",
+      "no-await-in-loop": "off",
+      "no-plusplus": "off",
+      "arrow-body-style": "off",
+      "eqeqeq": "off",
       quotes: ['error', 'single'],
       'no-console': [
         'warn',

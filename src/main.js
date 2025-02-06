@@ -1,14 +1,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
-
 import { mkdir } from 'fs/promises';
+/* eslint-disable quotes */
+/* eslint-disable no-console */
+
 
 async function ensureDistExists() {
   try {
     await mkdir('dist', { recursive: true }); // Creates 'dist' if it doesn't exist
   } catch (err) {
-    console.error('Error creating \'dist\' directory:', err);
+    console.error("Error creating 'dist' directory:", err);
   }
 }
 
@@ -22,6 +24,7 @@ const INDEX_PATH = './data/index.json';
  * @returns {Promise<unknown | null>} Les skrá úr `filePath` og skilar innihaldi. Skilar `null` ef villa kom upp.
  */
 async function readJson(filePath) {
+  console.log('starting to read', filePath);
   let data;
   try {
     data = await fs.readFile(path.resolve(filePath), 'utf-8');
@@ -40,22 +43,46 @@ async function readJson(filePath) {
 }
 
 /**
+ * Fann þetta á stack overflow
+ * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ * Shuffle function sem randomize-ar array
+ * @param {*} array fylki sem á að randomize-a
+ * @returns randomize-aða fylkinu
+ */
+function shuffle(array) {
+  if (array.constructor !== Array) {
+      console.error("Trying to randomize a non-array object");
+      return null;
+  }
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+/**
  * Fall sem passar upp á XSS( Cross Site Scripting) árásir og breytir mögulega 
  * 'vondum' texta í öruggan texta
  * @param {*} unsafeText Tekur inn texta sem á að escape-a
  * @returns öruggum javascript texta
  */
 function escapeHtml(unsafeText) {
-  if (typeof unsafeText !== 'string') {
-    return '';
+  if (typeof unsafeText !== "string") {
+    return "";
   }
   
   return unsafeText
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function stringToHtml(str) {
@@ -67,8 +94,6 @@ function stringToHtml(str) {
     .replace(/ {2}/g, '&nbsp;&nbsp;'); // Viðhalda bilum
 }
 
-
-
 /**
  * Skrifa HTML fyrir yfirlit í index.html
  * @param {any} data Gögn til að skrifa
@@ -77,12 +102,12 @@ function stringToHtml(str) {
 async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
   const html = data.map((item) => 
-    /* html */`
+    /*html*/`
     <li class="flokkar">
-      <a href="${stringToHtml(item.title)}.html">${stringToHtml(item.title)}</a>
+      <a href="${escapeHtml(item.title)}.html">${escapeHtml(item.title)}</a>
     </li>`
   ).join('\n');  
-  const htmlContent = /* html */`<!Doctype html>
+  const htmlContent = /*html*/`<!Doctype html>
   <html lang="is">
     <head>
       <meta charset="UTF-8">
@@ -104,38 +129,14 @@ async function writeHtml(data) {
 }
 
 /**
- * Fann þetta á stack overflow
- * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
- * Shuffle function sem randomize-ar array
- * @param {*} array fylki sem á að randomize-a
- * @returns randomize-aða fylkinu
- */
-function shuffle(array) {
-  if (array.constructor !== Array) {
-      console.error('Trying to randomize a non-array object');
-      return null;
-  }
-  let currentIndex = array.length;
-
-  while (currentIndex !== 0) {
-      const randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex-=1;
-
-      [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
-
-/**
  * Býr til HTML fyrir svarmöguleika
  * @param {*} answersList tekur inn lista af svarmöguleikum
  * @returns svarmöguleikum í HTML
  */
 function getAnswerHtml(answersList) {
-  return /* html */`
+  return /*html*/`
       <p class="bold">Svarmöguleikar:</p>
-    <ol class="answer-list">${shuffle(answersList).map(answer => /* html */`
+    <ol class="answer-list">${shuffle(answersList).map(answer => /*html*/`
       <li>
         <button 
           data-correct="${answer.correct}" 
@@ -153,8 +154,8 @@ function getAnswerHtml(answersList) {
  * @returns spurningum ásamt svarmöguleikum í HTML
  */
 function getQuestionHtml(questionList) {
-  return /* html */`
-    <ol class="question-list">${questionList.map((question) => /* html */`
+  return /*html*/`
+    <ol class="question-list">${questionList.map((question) => /*html*/`
       <li>
         <p class="question">${stringToHtml(question.question)}
         </p>${getAnswerHtml(question.answers)}
@@ -162,15 +163,14 @@ function getQuestionHtml(questionList) {
     </ol>`;
 }
 
-
 /**
  * Býr til .html fyrir json skrárnar CSS, HTML og JS og birtrar spurningar og svarmöguleika
  * @param {*} data tekur inn gögn frá json skrá
  */
 async function writeSubHtml(data) {
-  const htmlFilePath = `dist/${  data.title  }.html`;
+  const htmlFilePath = 'dist/' + data.title + '.html';
   const questionList = getQuestionHtml(data.questions)
-  const htmlContent = /* html */`<!Doctype html>
+  const htmlContent = /*html*/`<!Doctype html>
 <html lang="is">
   <head>
     <meta charset="UTF-8">
@@ -189,7 +189,6 @@ async function writeSubHtml(data) {
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
 
-
 /**
  * Fall sem athugar hvort spurningar og svarmöguleikar séu gildir
  * og filterar út ógilda spurningar og svarmöguleika
@@ -206,11 +205,13 @@ function parseSubJson(data) {
     if (answersIsArray) {
       return false
     }
-    // Filter invalid answers
-    question.answers = question.answers.filter((answer) => (
-        typeof answer.answer === 'string' &&  
-        typeof answer.correct === 'boolean' 
-      ));
+    //Filter invalid answers
+    question.answers = question.answers.filter((answer) => {
+      return (
+        typeof answer.answer === "string" &&  
+        typeof answer.correct === "boolean" 
+      );
+    });
 
     return true
   })
@@ -232,13 +233,13 @@ async function parseIndexJson(data) {
   for (const item of data) {
     const titleIsUndefined = item.title === undefined;
     const fileIsUndefined = item.file === undefined;
-    const fileDoesNotExist = !existsSync(`data/${  item.file}`);
+    const fileDoesNotExist = !existsSync("data/" + item.file);
 
     if (titleIsUndefined || fileIsUndefined || fileDoesNotExist) {
       continue;
     }
 
-    const fileData = readJson(`data/${  item.file}`);
+    const fileData = await readJson("data/" + item.file);
     if (!fileData || typeof fileData.title !== 'string' || !Array.isArray(fileData.questions)) {
       continue;
     }
@@ -261,13 +262,11 @@ async function main() {
 
   await writeHtml(indexData);
 
-  for (let i = 0; i < indexData.length; i+=1) {
-    let subData = readJson(`data/${  indexData[i].file}`);
+  for (let i = 0; i < indexData.length; i++) {
+    let subData = await readJson("data/" + indexData[i].file);
     subData = parseSubJson(subData);
-    writeSubHtml(subData);
+    await writeSubHtml(subData);
   }
 }
-
-
 
 main();
