@@ -39,7 +39,7 @@ export async function readJson(filePath) {
 }
 
 /**
- * Fann þetta á stack overflow
+ * Fann þetta á stack overflow 
  * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  * Shuffle function sem randomize-ar array
  * @param {*} array fylki sem á að randomize-a
@@ -122,7 +122,7 @@ export async function writeHtml(data) {
  * @param {*} answersList tekur inn lista af svarmöguleikum
  * @returns svarmöguleikum í HTML
  */
-function getAnswerHtml(answersList) {
+export function getAnswerHtml(answersList) {
   return /*html*/`
       <p class="bold">Svarmöguleikar:</p>
     <ol class="answer-list">${shuffle(answersList).map(answer => /*html*/`
@@ -244,7 +244,7 @@ export async function parseIndexJson(data) {
  * 2. Staðfestir gögn (validation)
  * 3. Skrifar út HTML
  */
-async function main() {
+export async function main() {
   const indexJson = await readJson(INDEX_PATH);
 
   const indexData = await parseIndexJson(indexJson);

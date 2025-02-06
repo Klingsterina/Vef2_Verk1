@@ -1,8 +1,16 @@
 /* eslint-disable quotes */
 /* eslint-disable no-console */
-import { jest } from "@jest/globals";
-import {escapeHtml, shuffle, stringToHtml, parseSubJson, parseIndexJson} from "./main.js";
 /* eslint-disable no-undef */
+import fs from "node:fs";
+import {jest } from "@jest/globals";
+import {escapeHtml, 
+        shuffle, 
+        stringToHtml, 
+        parseSubJson, 
+        parseIndexJson, 
+        getQuestionHtml, 
+        main, 
+        getAnswerHtml} from "./main.js";
 
 //Þessi eslint warnings makea ekki ssense!!
 test('escapeHtml escapes HTML', () => {
@@ -21,7 +29,6 @@ test('stringToHtml', () => {
   const output = "<p>HTML:</p><p><br>&lt;div class=&amp;quot;text&amp;quot;&gt;<br>&nbsp;&nbsp;&lt;h1 class=&amp;quot;importanttext__title&amp;quot;&gt;Halló heimur&lt;/p&gt;<br>&lt;/div&gt;<br> </p><p>Er skilgreint CSS / there is defined CSS:</p><p><br>.text {<br>&nbsp;&nbsp;font-size: 10px;<br>&nbsp;&nbsp;color: green;<br>}</p><p>.text .text__title {<br>&nbsp;&nbsp;font-size: 1.5em;<br>}</p><p>.important {<br>&nbsp;&nbsp;font-size: 2em;<br>&nbsp;&nbsp;color: red;<br>}</p><p> </p><p></p>";
   expect(stringToHtml(input)).toBe(output);
 });
-
 
 test("returns a shuffled array of the same length", () => {
   const arr = [1, 2, 3, 4, 5];
@@ -54,4 +61,60 @@ test("returns an empty array when input is not an array", async () => {
   const result = await parseIndexJson(null);
   expect(result).toEqual([]);
   expect(console.error).toHaveBeenCalledWith("index.json is not an array. Check the file format.");
+});
+
+test("getQuestionHtml generates correct HTML", () => {
+  const input = [
+    {
+      question: "Spurning",
+      answers: [
+        { answer: "Svar 1", correct: true },
+        { answer: "Svar 2", correct: false },
+      ],
+    },
+  ];
+
+  // Generate HTML
+  const result = getQuestionHtml(input);
+
+  // Remove *all* whitespace so the match isn't affected by newlines/spaces
+  const normalized = result.replace(/\s+/g, "");
+  
+  // Also remove whitespace in the expected substring
+  const expectedOutput = '<p class="question"><p>Spurning</p></p>'.replace(/\s+/g, "");
+
+  // Now they should match
+  expect(normalized).toContain(expectedOutput);
+});
+
+test("getAnswerHtml generates correct HTML", () => {
+  const answersList = [
+    { answer: "Svar 1", correct: true },
+    { answer: "Svar 2", correct: false },
+  ];
+
+  // Generate the HTML from getAnswerHtml()
+  const result = getAnswerHtml(answersList);
+
+  // Remove all whitespace so newlines/spaces don't affect substring matching
+  const normalized = result.replace(/\s+/g, "");
+
+  // Now check for specific substrings in the normalized output
+  expect(normalized).toContain('<pclass="bold">Svarmöguleikar:</p>');
+  expect(normalized).toContain('<olclass="answer-list">');
+  expect(normalized).toContain('data-correct="true"');
+  expect(normalized).toContain('data-correct="false"');
+
+  // Optionally, verify the answer text also appears
+  expect(normalized).toContain("<p>Svar1</p>");
+  expect(normalized).toContain("<p>Svar2</p>");
+});
+
+test("main() runs without throwing and writes HTML files", async () => {
+  // 1. Call main()
+  await expect(main()).resolves.not.toThrow();
+
+  // 2. Verify that it created dist/index.html
+  const indexPath = "./dist/index.html";
+  expect(fs.existsSync(indexPath)).toBe(true);
 });
