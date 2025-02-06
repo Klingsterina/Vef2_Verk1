@@ -5,7 +5,6 @@ import { mkdir } from 'fs/promises';
 /* eslint-disable quotes */
 /* eslint-disable no-console */
 
-
 async function ensureDistExists() {
   try {
     await mkdir('dist', { recursive: true }); // Creates 'dist' if it doesn't exist
@@ -13,9 +12,7 @@ async function ensureDistExists() {
     console.error("Error creating 'dist' directory:", err);
   }
 }
-
 await ensureDistExists();
-
 const INDEX_PATH = './data/index.json';
 
 /**
@@ -23,8 +20,8 @@ const INDEX_PATH = './data/index.json';
  * @param {string} filePath Skráin sem á að lesa
  * @returns {Promise<unknown | null>} Les skrá úr `filePath` og skilar innihaldi. Skilar `null` ef villa kom upp.
  */
-async function readJson(filePath) {
-  console.log('starting to read', filePath);
+export async function readJson(filePath) {
+  // console.log('starting to read', filePath);
   let data;
   try {
     data = await fs.readFile(path.resolve(filePath), 'utf-8');
@@ -32,7 +29,6 @@ async function readJson(filePath) {
     console.error(`Error reading file ${filePath}:`, error.message);
     return null;
   }
-
   try {
     const parsed = JSON.parse(data);
     return parsed;
@@ -49,7 +45,7 @@ async function readJson(filePath) {
  * @param {*} array fylki sem á að randomize-a
  * @returns randomize-aða fylkinu
  */
-function shuffle(array) {
+export function shuffle(array) {
   if (array.constructor !== Array) {
       console.error("Trying to randomize a non-array object");
       return null;
@@ -72,7 +68,7 @@ function shuffle(array) {
  * @param {*} unsafeText Tekur inn texta sem á að escape-a
  * @returns öruggum javascript texta
  */
-function escapeHtml(unsafeText) {
+export function escapeHtml(unsafeText) {
   if (typeof unsafeText !== "string") {
     return "";
   }
@@ -85,7 +81,7 @@ function escapeHtml(unsafeText) {
     .replace(/'/g, "&#039;");
 }
 
-function stringToHtml(str) {
+export function stringToHtml(str) {
   return escapeHtml(str) // Tryggir örugg HTML tákn
     .split('\n\n') // Skipta í málsgreinar
     .map((line) => `<p>${line}</p>`) // Setja málsgreinar í `<p>` tag
@@ -99,7 +95,7 @@ function stringToHtml(str) {
  * @param {any} data Gögn til að skrifa
  * @returns {Promise<void>}
  */
-async function writeHtml(data) {
+export async function writeHtml(data) {
   const htmlFilePath = 'dist/index.html';
   const html = data.map((item) => 
     /*html*/`
@@ -122,9 +118,7 @@ async function writeHtml(data) {
         </ul>
       </div>
     </body>
-  </html>
-`;
-
+  </html>`;
   fs.writeFile(htmlFilePath, htmlContent, 'utf-8');
 }
 
@@ -153,7 +147,7 @@ function getAnswerHtml(answersList) {
  * @param {*} questionList tekur inn lista af spurningum
  * @returns spurningum ásamt svarmöguleikum í HTML
  */
-function getQuestionHtml(questionList) {
+export function getQuestionHtml(questionList) {
   return /*html*/`
     <ol class="question-list">${questionList.map((question) => /*html*/`
       <li>
@@ -195,7 +189,7 @@ async function writeSubHtml(data) {
  * @param {*} data Gögn til að filtera
  * @returns Skilar gögnum sem hafa verið filteruð
  */
-function parseSubJson(data) {
+export function parseSubJson(data) {
   const newQuestions = data.questions.filter((question) => {
     const questionIsUndefined = question.question === undefined;
     if (questionIsUndefined) {
@@ -224,7 +218,7 @@ function parseSubJson(data) {
  * @param {unknown} data Gögn til að hreinsa
  * @returns {any} Gögn sem hafa verið hreinsuð
  */
-async function parseIndexJson(data) {
+export async function parseIndexJson(data) {
   if (!Array.isArray(data)) {
     console.error('index.json is not an array. Check the file format.');
     return [];
