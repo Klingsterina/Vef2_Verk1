@@ -131,7 +131,7 @@ function getQuestionHtml(questionList) {
   return /*html*/`
     <ol class="question-list">${questionList.map((question) => /*html*/`
       <li>
-        <p class="question">${stringToHtml(question.question).replace(/\n/g, '<br>')}:
+        <p class="question">${stringToHtml(question.question)}
         </p>${getAnswerHtml(question.answers)}
       </li>`).join('')}
     </ol>`;
